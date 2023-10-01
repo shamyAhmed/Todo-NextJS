@@ -1,8 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import {  Montserrat, Fuggles } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+
+const montserrat = Montserrat({subsets: ['latin']})
+const fuggles = Fuggles({subsets: ["latin"], weight: ['400'], variable: "--fuggles"})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body suppressHydrationWarning={true}>
+        <div className={`${montserrat.className} ${fuggles.variable} bg-mainbg min-h-screen`}>
+          {children}
+        </div>
+      </body>
     </html>
   )
 }

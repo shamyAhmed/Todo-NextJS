@@ -1,0 +1,26 @@
+.sidebar-burger span:first-child, .sidebar-burger  span:nth-child(3) {
+    transition: all ease 0.2s;
+}
+
+.sidebar-burger.active  span:first-child {
+    transform: rotate(-45deg) translate(-4px, 3px);
+}
+.sidebar-burger.active  span:nth-child(2) {
+    display: none;
+}
+.sidebar-burger.active  span:nth-child(3) {
+    transform: rotate(45deg) translate(-2px, -2px);
+}
+.sidebar-burger > .sidebar-burger-list{
+   display: block;
+   height: 100vh;
+   top: 0px;
+   right: -100%;
+   width: 100%;
+   transition: 0.3s all ease;
+   position: fixed;
+
+}
+.sidebar-burger.active > .sidebar-burger-list{
+    right: 0%;
+}

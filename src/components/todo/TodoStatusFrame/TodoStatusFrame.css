@@ -1,0 +1,3 @@
+.todolist-title{
+    width: calc(fit-content + 10px);
+}

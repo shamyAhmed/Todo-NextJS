@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    serverRuntimeConfig: {
+        open: true
+    }
+}
 
 module.exports = nextConfig

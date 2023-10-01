@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model user{
+  uid  String @id 
+  name String
+  email String @unique
+  list todoList?
+  records record[]
+}
+
+model todoList{
+  user  user @relation(fields: [owner_id], references: [uid])
+  owner_id  String @unique
+  id Int @id @default(autoincrement())
+  todos todo[]
+}
+
+model todo{
+  id  Int @id @default(autoincrement())
+  list  todoList  @relation(fields: [list_id], references: [id])
+  list_id Int 
+  title String
+  status  String  @default("todo")
+  createdAt DateTime  @default(now()) @map("created_at")
+  dueDate DateTime? @map("due_date")
+}
+
+model record{
+  id  Int  @id @default(autoincrement())
+  recordDate  DateTime? @default(now()) @map("record_date")
+  user user @relation(fields: [owner], references: [uid])
+  owner String 
+  overDue Int? @default(0)
+  completed Int? @default(0)
+  @@unique([recordDate, owner], name: "report_per_date")
+}
